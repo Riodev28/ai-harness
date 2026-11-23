@@ -17,10 +17,10 @@ This is a hard guardrail.
 
 ## Workflow
 
-1. **Settle the architecture and the framework.** Follow [ARCHITECTURE.md](/home/riodev/Documents/code/claude/shared/ARCHITECTURE.md): no architecture is mandatory, and the style is the user's choice per product. If no ADR records the frontend architecture and framework yet, invoke the `grill-me` skill, which also covers the framework choice (React, Next.js, Angular, Vue or Astro). Record the answer as an ADR, and build to what it chose. Done when an ADR names both the architecture and the framework.
+1. **Settle the architecture and the framework.** Follow [ARCHITECTURE.md](../../shared/ARCHITECTURE.md): no architecture is mandatory, and the style is the user's choice per product. If no ADR records the frontend architecture and framework yet, invoke the `grill-me` skill, which also covers the framework choice (React, Next.js, Angular, Vue or Astro). Record the answer as an ADR, and build to what it chose. Done when an ADR names both the architecture and the framework.
 2. **Understand the requirement.** Start from your tech-lead brief and the approved functional analysis it links (`docs/analysis/`). Their acceptance criteria, contracts and UI/UX section are your spec. If you have no brief, invoke the `tech-lead` skill to produce the analysis before you write any code. List the user flows, the screens, every UI state (empty, loading, error, success, partial), the data sources, and the breakpoints. Read the existing design system and components first, and reuse them. Done when you can list the acceptance criteria.
 3. **Design the components.** Split the UI into design-system primitives, then feature components, then pages or routes. Decide where each piece of state lives (local, server cache, global) and which contracts are typed. For a non-trivial change, state the component tree and data flow in a few lines before you code. Done when every new component has one responsibility and a typed props interface.
-4. **Implement in small steps, test-first wherever the behaviour is specifiable.** Use the framework guidance in [FRAMEWORKS.md](FRAMEWORKS.md) and the design-system rules in [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md). First read the lessons that apply to you in the shared [QUALITY-PLAYBOOK.md](/home/riodev/Documents/code/claude/shared/QUALITY-PLAYBOOK.md) and in the project's `docs/QUALITY-PLAYBOOK.md`, and get them right the first time. Apply the [RATCHET.md](/home/riodev/Documents/code/claude/shared/RATCHET.md) rules: keep coverage at 80% or more, run the code-quality-engineer's lint set, and format only the lines in your diff. If the repository has CI, rely on CI for these checks and read its result instead of re-running them yourself.
+4. **Implement in small steps, test-first wherever the behaviour is specifiable.** Use the framework guidance in [FRAMEWORKS.md](FRAMEWORKS.md) and the design-system rules in [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md). First read the lessons that apply to you in the shared [QUALITY-PLAYBOOK.md](../../shared/QUALITY-PLAYBOOK.md) and in the project's `docs/QUALITY-PLAYBOOK.md`, and get them right the first time. Apply the [RATCHET.md](../../shared/RATCHET.md) rules: keep coverage at 80% or more, run the code-quality-engineer's lint set, and format only the lines in your diff. If the repository has CI, rely on CI for these checks and read its result instead of re-running them yourself.
 5. **Pass the quality gate** below. Every item must be checked and true.
 6. **Hand off for review.** Every change passes through **code-quality-engineer**, then **tech-lead**, before it reaches the user. The hand-off covers:
    - what changed and why;
@@ -61,11 +61,11 @@ When an item can't be met, say so in the hand-off along with the reason.
 
 ## Reference
 
-- **Choosing and recording the architecture:** [ARCHITECTURE.md](/home/riodev/Documents/code/claude/shared/ARCHITECTURE.md)
+- **Choosing and recording the architecture:** [ARCHITECTURE.md](../../shared/ARCHITECTURE.md)
 - **Design system, UI and UX behaviour:** [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md)
 - **TypeScript and per-framework practices:** [FRAMEWORKS.md](FRAMEWORKS.md)
-- **Clean code and principles** (SOLID, naming, functions, errors, testing): [PRINCIPLES.md](/home/riodev/Documents/code/claude/shared/PRINCIPLES.md)
-- **Data structures and complexity** (client-side lists, caches, lookups): [DATA-STRUCTURES.md](/home/riodev/Documents/code/claude/shared/DATA-STRUCTURES.md)
-- **Design patterns:** [DESIGN-PATTERNS.md](/home/riodev/Documents/code/claude/shared/DESIGN-PATTERNS.md)
-- **System design** (API contracts, caching, scaling, observability): [SYSTEM-DESIGN.md](/home/riodev/Documents/code/claude/shared/SYSTEM-DESIGN.md)
-- **Post-push ratchet** (80% coverage, linter rules, diff-only formatting): [RATCHET.md](/home/riodev/Documents/code/claude/shared/RATCHET.md)
+- **Clean code and principles** (SOLID, naming, functions, errors, testing): [PRINCIPLES.md](../../shared/PRINCIPLES.md)
+- **Data structures and complexity** (client-side lists, caches, lookups): [DATA-STRUCTURES.md](../../shared/DATA-STRUCTURES.md)
+- **Design patterns:** [DESIGN-PATTERNS.md](../../shared/DESIGN-PATTERNS.md)
+- **System design** (API contracts, caching, scaling, observability): [SYSTEM-DESIGN.md](../../shared/SYSTEM-DESIGN.md)
+- **Post-push ratchet** (80% coverage, linter rules, diff-only formatting): [RATCHET.md](../../shared/RATCHET.md)

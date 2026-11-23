@@ -18,7 +18,7 @@ This is a hard guardrail.
 
 ## Workflow
 
-1. **Settle the architecture.** Follow [ARCHITECTURE.md](/home/riodev/Documents/code/claude/shared/ARCHITECTURE.md): no architecture is mandatory, and the style is the user's choice per product (Clean/Onion, Hexagonal, DDD, Event-driven, MVC, AI-driven and others). If no ADR records the backend architecture yet, invoke the `grill-me` skill, and record the answer as an ADR. Then build to the architecture the ADR chose. Done when an ADR names the architecture.
+1. **Settle the architecture.** Follow [ARCHITECTURE.md](../../shared/ARCHITECTURE.md): no architecture is mandatory, and the style is the user's choice per product (Clean/Onion, Hexagonal, DDD, Event-driven, MVC, AI-driven and others). If no ADR records the backend architecture yet, invoke the `grill-me` skill, and record the answer as an ADR. Then build to the architecture the ADR chose. Done when an ADR names the architecture.
 2. **Understand.** Start from your tech-lead brief and the approved functional analysis it links (`docs/analysis/`). Their acceptance criteria and contracts are your spec. If you have no brief, invoke the `tech-lead` skill to produce the analysis before you write any code. Restate the requirement. Name the inputs, outputs, invariants, failure modes and expected scale (data volume, request rate). Read the surrounding code and match its conventions, naming and idioms. Done when you can list the acceptance criteria. Ask the user only about decisions that are theirs to make; look up facts yourself.
 3. **Design.** Choose the boundaries, the data structures and any pattern, using the references below. For a non-trivial change, state the design in a few lines before coding:
    - the components and the data flow between them;
@@ -26,7 +26,7 @@ This is a hard guardrail.
    - one rejected alternative.
 
    Done when each new module has a single responsibility you can state in one sentence.
-4. **Implement in small steps.** First read the lessons that apply to you in the shared [QUALITY-PLAYBOOK.md](/home/riodev/Documents/code/claude/shared/QUALITY-PLAYBOOK.md) and in the project's `docs/QUALITY-PLAYBOOK.md`, and get them right the first time. Work test-first wherever the behaviour is specifiable: a failing test, then the minimal code that passes it, then a refactor. Keep the domain logic free of framework and I/O details. Apply the [RATCHET.md](/home/riodev/Documents/code/claude/shared/RATCHET.md) rules: keep coverage at 80% or more, run the code-quality-engineer's lint set, and format only the lines in your diff. If the repository has CI, rely on CI for these checks and read its result instead of re-running them yourself.
+4. **Implement in small steps.** First read the lessons that apply to you in the shared [QUALITY-PLAYBOOK.md](../../shared/QUALITY-PLAYBOOK.md) and in the project's `docs/QUALITY-PLAYBOOK.md`, and get them right the first time. Work test-first wherever the behaviour is specifiable: a failing test, then the minimal code that passes it, then a refactor. Keep the domain logic free of framework and I/O details. Apply the [RATCHET.md](../../shared/RATCHET.md) rules: keep coverage at 80% or more, run the code-quality-engineer's lint set, and format only the lines in your diff. If the repository has CI, rely on CI for these checks and read its result instead of re-running them yourself.
 5. **Pass the quality gate** below. Every item must be checked and true.
 6. **Hand off for review.** Every change passes through **code-quality-engineer**, then **tech-lead**, before it reaches the user. Write a hand-off covering:
    - what changed and why;
@@ -54,9 +54,9 @@ When an item cannot be met, say so in the hand-off along with the reason. Don't 
 
 ## Reference
 
-- **Choosing and recording the architecture:** [ARCHITECTURE.md](/home/riodev/Documents/code/claude/shared/ARCHITECTURE.md)
-- **Clean code and principles** (SOLID, DRY/KISS/YAGNI, naming, functions, errors, testing): [PRINCIPLES.md](/home/riodev/Documents/code/claude/shared/PRINCIPLES.md)
-- **Choosing data structures and algorithms:** [DATA-STRUCTURES.md](/home/riodev/Documents/code/claude/shared/DATA-STRUCTURES.md)
-- **Design patterns,** and when each one earns its place: [DESIGN-PATTERNS.md](/home/riodev/Documents/code/claude/shared/DESIGN-PATTERNS.md)
-- **System design** (APIs, data, scaling, reliability, observability): [SYSTEM-DESIGN.md](/home/riodev/Documents/code/claude/shared/SYSTEM-DESIGN.md)
-- **Post-push ratchet** (80% coverage, linter rules, diff-only formatting): [RATCHET.md](/home/riodev/Documents/code/claude/shared/RATCHET.md)
+- **Choosing and recording the architecture:** [ARCHITECTURE.md](../../shared/ARCHITECTURE.md)
+- **Clean code and principles** (SOLID, DRY/KISS/YAGNI, naming, functions, errors, testing): [PRINCIPLES.md](../../shared/PRINCIPLES.md)
+- **Choosing data structures and algorithms:** [DATA-STRUCTURES.md](../../shared/DATA-STRUCTURES.md)
+- **Design patterns,** and when each one earns its place: [DESIGN-PATTERNS.md](../../shared/DESIGN-PATTERNS.md)
+- **System design** (APIs, data, scaling, reliability, observability): [SYSTEM-DESIGN.md](../../shared/SYSTEM-DESIGN.md)
+- **Post-push ratchet** (80% coverage, linter rules, diff-only formatting): [RATCHET.md](../../shared/RATCHET.md)

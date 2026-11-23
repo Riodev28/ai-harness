@@ -4,7 +4,7 @@ This file is shared by every engineering skill: senior-backend-engineer, senior-
 
 ## No architecture is mandatory
 
-Clean architecture is **one option in the catalogs below, not a default.** Every product chooses its architecture, per layer, through the [grill-me](/home/riodev/Documents/code/claude/skills/grill-me/SKILL.md) skill, and the choice is recorded in an ADR. Once chosen, the architecture is binding: the engineers build to it and the reviewers check against it.
+Clean architecture is **one option in the catalogs below, not a default.** Every product chooses its architecture, per layer, through the [grill-me](../skills/grill-me/SKILL.md) skill, and the choice is recorded in an ADR. Once chosen, the architecture is binding: the engineers build to it and the reviewers check against it.
 
 Some styles come with rules that the ADR then makes mandatory for that product. Clean / Onion and Hexagonal, for example, bring the dependency rule.
 

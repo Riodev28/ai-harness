@@ -30,8 +30,8 @@ These are hard guardrails.
    - **Deployment target:** a VPS with Compose, Kubernetes, PaaS, serverless, an app store or sideloading.
    - **Platform tools:** registry, secrets, observability and IaC; see [PLATFORM-TOOLS.md](PLATFORM-TOOLS.md).
 
-   Follow [ARCHITECTURE.md](/home/riodev/Documents/code/claude/shared/ARCHITECTURE.md). The product's architecture shapes the delivery topology: a modular monolith needs one image, microservices need one pipeline per service. Done when an ADR records every delivery decision the product needs.
-3. **Implement in small, verifiable steps.** Write the Dockerfile and Compose file first, then the CI pipeline, then CD, then the platform integrations. Run each step locally before starting the next. First read the lessons that apply to you in the shared [QUALITY-PLAYBOOK.md](/home/riodev/Documents/code/claude/shared/QUALITY-PLAYBOOK.md) and in the project's `docs/QUALITY-PLAYBOOK.md`, and get them right the first time. Apply the [RATCHET.md](/home/riodev/Documents/code/claude/shared/RATCHET.md) rules, and put them in the CI pipeline as failing checks (coverage of at least 80%, the lint set, a diff-only format check) so that no agent has to re-check them. Format only the lines in your diff.
+   Follow [ARCHITECTURE.md](../../shared/ARCHITECTURE.md). The product's architecture shapes the delivery topology: a modular monolith needs one image, microservices need one pipeline per service. Done when an ADR records every delivery decision the product needs.
+3. **Implement in small, verifiable steps.** Write the Dockerfile and Compose file first, then the CI pipeline, then CD, then the platform integrations. Run each step locally before starting the next. First read the lessons that apply to you in the shared [QUALITY-PLAYBOOK.md](../../shared/QUALITY-PLAYBOOK.md) and in the project's `docs/QUALITY-PLAYBOOK.md`, and get them right the first time. Apply the [RATCHET.md](../../shared/RATCHET.md) rules, and put them in the CI pipeline as failing checks (coverage of at least 80%, the lint set, a diff-only format check) so that no agent has to re-check them. Format only the lines in your diff.
 4. **Pass the quality gate** below. Every item must be checked and true.
 5. **Hand off for review.** Every change passes through **code-quality-engineer**, then **tech-lead**, before it reaches the user. Write a hand-off covering:
    - what changed and why;
@@ -85,7 +85,7 @@ When an item can't be met, say so in the hand-off along with the reason.
 - **When and how to dockerize** (Dockerfile, Compose, image hygiene): [CONTAINERS.md](CONTAINERS.md)
 - **CI/CD design, GitHub Actions and Jenkins:** [CICD.md](CICD.md)
 - **Platform tools to recommend** (registry, secrets, IaC, orchestration, observability): [PLATFORM-TOOLS.md](PLATFORM-TOOLS.md)
-- **Architecture decisions and ADRs:** [ARCHITECTURE.md](/home/riodev/Documents/code/claude/shared/ARCHITECTURE.md)
-- **System design** (scaling, reliability, observability, security): [SYSTEM-DESIGN.md](/home/riodev/Documents/code/claude/shared/SYSTEM-DESIGN.md)
-- **Clean code and principles** (these apply to scripts and pipeline code too): [PRINCIPLES.md](/home/riodev/Documents/code/claude/shared/PRINCIPLES.md)
-- **Post-push ratchet** (80% coverage, linter rules, diff-only formatting): [RATCHET.md](/home/riodev/Documents/code/claude/shared/RATCHET.md)
+- **Architecture decisions and ADRs:** [ARCHITECTURE.md](../../shared/ARCHITECTURE.md)
+- **System design** (scaling, reliability, observability, security): [SYSTEM-DESIGN.md](../../shared/SYSTEM-DESIGN.md)
+- **Clean code and principles** (these apply to scripts and pipeline code too): [PRINCIPLES.md](../../shared/PRINCIPLES.md)
+- **Post-push ratchet** (80% coverage, linter rules, diff-only formatting): [RATCHET.md](../../shared/RATCHET.md)

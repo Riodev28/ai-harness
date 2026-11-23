@@ -2,14 +2,62 @@
 
 A team of Claude Code skills that works like an engineering team, plus the shared standards they read.
 
+## How the team works
+
+```mermaid
+flowchart TD
+    U([You: request a product or feature]) --> TL1
+
+    subgraph before [Before any code]
+        TL1[tech-lead<br/>functional analysis + briefs<br/>docs/analysis/]
+        GM{ADR records the<br/>architecture?}
+        GR[grill-me<br/>interviews you, picks a style<br/>docs/adr/NNNN-architecture.md]
+        TL1 --> GM
+        GM -- no --> GR --> GM
+    end
+
+    GM -- yes --> ENG
+
+    subgraph build [Build]
+        ENG[senior-backend / frontend / devops engineer<br/>small steps, test-first<br/>reads QUALITY-PLAYBOOK + RATCHET]
+    end
+
+    ENG --> CI
+
+    subgraph ratchet [Ratchet: in CI when the repo has CI]
+        CI[CI checks<br/>coverage ≥ 80%<br/>lint set<br/>diff-only format]
+    end
+
+    CI -- red --> ENG
+    CI -- green --> CQ
+
+    subgraph gate [Quality gate]
+        CQ[code-quality-engineer<br/>reads CI result, runs lint set<br/>refactors without changing behaviour]
+        PB[(QUALITY-PLAYBOOK<br/>+ new lint rules)]
+        CQ -- every finding becomes a lesson --> PB
+    end
+
+    CQ -- CHANGES REQUESTED --> ENG
+    CQ -- APPROVED --> TL2
+
+    subgraph signoff [Sign-off]
+        TL2[tech-lead<br/>checks analysis, ADR and CI<br/>writes docs/changes/NNNN-slug.md]
+    end
+
+    TL2 -- CHANGES REQUESTED --> ENG
+    TL2 -- APPROVED --> U2([You: review, commit and push])
+
+    PB -. read before implementing .-> ENG
 ```
-engineer (backend / frontend / devops) → code-quality-engineer → tech-lead → you
-```
+
+Every change goes engineer → code-quality-engineer → tech-lead → you. You own git history: the skills never commit or push.
 
 ## What's inside
 
 - `skills/` holds the roles: `tech-lead`, `senior-backend-engineer`, `senior-frontend-engineer`, `senior-devops-engineer`, `code-quality-engineer` and `grill-me` (picks the architecture with you).
 - `shared/` holds the standards every role reads: architecture, principles, design patterns, data structures, system design, the quality playbook and the post-push ratchet rules.
+
+Links between files are relative, so the repository works wherever you clone it.
 
 ## Install
 
@@ -18,31 +66,22 @@ You need [Claude Code](https://claude.com/claude-code) and git.
 1. Clone the repository anywhere you like:
 
    ```bash
-   git clone <repository-url> ~/claude-harness
+   git clone https://github.com/Riodev28/ai-harness ~/claude-harness
    ```
 
-2. Point the skills' links at your clone. The `SKILL.md` files link to the shared docs with absolute paths, so rewrite the old path to yours:
-
-   ```bash
-   cd ~/claude-harness
-   grep -rl "/home/riodev/Documents/code/claude" skills shared \
-     | xargs sed -i "s|/home/riodev/Documents/code/claude|$HOME/claude-harness|g"
-   ```
-
-   On macOS, use `sed -i ''` instead of `sed -i`. Skip this step if you cloned to `~/Documents/code/claude`.
-
-3. Link each skill into Claude Code's skills folder:
+2. Link the skills and the shared docs into Claude Code's folder. The skills reach the shared docs through `../../shared/`, so `shared` must sit next to `skills`:
 
    ```bash
    mkdir -p ~/.claude/skills
    for skill in ~/claude-harness/skills/*/; do
      ln -sfn "$skill" ~/.claude/skills/"$(basename "$skill")"
    done
+   ln -sfn ~/claude-harness/shared ~/.claude/shared
    ```
 
-   To use the skills in one project only, link them into that project's `.claude/skills/` instead.
+   To use the skills in one project only, link both into that project's `.claude/` instead.
 
-4. Restart Claude Code, then check that the six skills appear.
+3. Restart Claude Code, then check that the six skills appear.
 
 ## Use
 
@@ -56,7 +95,7 @@ You need [Claude Code](https://claude.com/claude-code) and git.
 cd ~/claude-harness && git pull
 ```
 
-Symlinked skills pick up the changes. Run step 2 again if the pull brings new absolute paths.
+Symlinked skills pick up the changes.
 
 ## House rules
 

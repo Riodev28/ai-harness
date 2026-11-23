@@ -29,13 +29,13 @@ These are hard guardrails.
 
 1. **Load the bar.** Read:
    - the author's skill quality gate (backend, frontend or devops);
-   - the shared [QUALITY-PLAYBOOK.md](/home/riodev/Documents/code/claude/shared/QUALITY-PLAYBOOK.md);
+   - the shared [QUALITY-PLAYBOOK.md](../../shared/QUALITY-PLAYBOOK.md);
    - the project's `docs/QUALITY-PLAYBOOK.md`, if it exists;
    - the project's ADRs.
 
    Done when you know every rule this change is held to.
 2. **Collect the change.** Use `git status`, `git diff --stat` and `git diff`, and include untracked files. Read the author's hand-off and the tech-lead brief it references.
-3. **Establish the baseline.** If the repository has CI, read its latest result for the build, formatter, linter, type checker, tests and the 80% coverage threshold from [RATCHET.md](/home/riodev/Documents/code/claude/shared/RATCHET.md) instead of re-running them. Otherwise run them and record their output. If the baseline is red, return **CHANGES REQUESTED** to the author: you refactor only on green.
+3. **Establish the baseline.** If the repository has CI, read its latest result for the build, formatter, linter, type checker, tests and the 80% coverage threshold from [RATCHET.md](../../shared/RATCHET.md) instead of re-running them. Otherwise run them and record their output. If the baseline is red, return **CHANGES REQUESTED** to the author: you refactor only on green.
 4. **Review the change** against the bar. Run your defined lint set rather than reading every diff line, and read by hand only what the rules cannot cover. Check that only the diff was formatted. Classify each finding:
    - **Refactorable:** you can fix it without changing behaviour or contracts. Examples are naming, function size, duplication, nesting, a missing value type, a test written against implementation details, a wrong data structure that a local change can fix, or pipeline duplication.
    - **Author-owned:** fixing it changes behaviour, a contract or the design. Examples are missing tests for behaviour that isn't specified, a wrong layer boundary, a missing error case, or a security hole that needs a design choice.
@@ -70,7 +70,7 @@ The tech lead copies this report into the change record.
 
 The playbook is how the engineers learn. Every engineer skill reads it before implementing.
 
-- **Global lessons,** which apply to any project, live in [QUALITY-PLAYBOOK.md](/home/riodev/Documents/code/claude/shared/QUALITY-PLAYBOOK.md).
+- **Global lessons,** which apply to any project, live in [QUALITY-PLAYBOOK.md](../../shared/QUALITY-PLAYBOOK.md).
 - **Project-specific lessons** live in the project's `docs/QUALITY-PLAYBOOK.md`. These are conventions or quirks of one codebase. Create the file the first time one is needed.
 
 Rules for editing it:
@@ -87,15 +87,15 @@ Rules for editing it:
 
 - **Safe refactoring procedure and catalog:** [REFACTORING.md](REFACTORING.md)
 - **The standards themselves:**
-  - [PRINCIPLES.md](/home/riodev/Documents/code/claude/shared/PRINCIPLES.md)
-  - [DATA-STRUCTURES.md](/home/riodev/Documents/code/claude/shared/DATA-STRUCTURES.md)
-  - [DESIGN-PATTERNS.md](/home/riodev/Documents/code/claude/shared/DESIGN-PATTERNS.md)
-  - [SYSTEM-DESIGN.md](/home/riodev/Documents/code/claude/shared/SYSTEM-DESIGN.md)
-  - [ARCHITECTURE.md](/home/riodev/Documents/code/claude/shared/ARCHITECTURE.md)
-  - [RATCHET.md](/home/riodev/Documents/code/claude/shared/RATCHET.md), the post-push rules you enforce and write linter rules for
+  - [PRINCIPLES.md](../../shared/PRINCIPLES.md)
+  - [DATA-STRUCTURES.md](../../shared/DATA-STRUCTURES.md)
+  - [DESIGN-PATTERNS.md](../../shared/DESIGN-PATTERNS.md)
+  - [SYSTEM-DESIGN.md](../../shared/SYSTEM-DESIGN.md)
+  - [ARCHITECTURE.md](../../shared/ARCHITECTURE.md)
+  - [RATCHET.md](../../shared/RATCHET.md), the post-push rules you enforce and write linter rules for
 - **Frontend standards:**
-  - [DESIGN-SYSTEM.md](/home/riodev/Documents/code/claude/skills/senior-frontend-engineer/DESIGN-SYSTEM.md)
-  - [FRAMEWORKS.md](/home/riodev/Documents/code/claude/skills/senior-frontend-engineer/FRAMEWORKS.md)
+  - [DESIGN-SYSTEM.md](../senior-frontend-engineer/DESIGN-SYSTEM.md)
+  - [FRAMEWORKS.md](../senior-frontend-engineer/FRAMEWORKS.md)
 - **DevOps standards:**
-  - [CONTAINERS.md](/home/riodev/Documents/code/claude/skills/senior-devops-engineer/CONTAINERS.md)
-  - [CICD.md](/home/riodev/Documents/code/claude/skills/senior-devops-engineer/CICD.md)
+  - [CONTAINERS.md](../senior-devops-engineer/CONTAINERS.md)
+  - [CICD.md](../senior-devops-engineer/CICD.md)

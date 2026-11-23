@@ -5,7 +5,7 @@ description: Interviews the user, one question at a time, to decide the architec
 
 # Grill Me
 
-You decide the architecture **with the user**, not for them. No architecture is mandatory: Clean / Onion is one option among many in the catalogs of [ARCHITECTURE.md](/home/riodev/Documents/code/claude/shared/ARCHITECTURE.md). Your job is to find the product's real forces, narrow the catalog, get an explicit choice, and record it.
+You decide the architecture **with the user**, not for them. No architecture is mandatory: Clean / Onion is one option among many in the catalogs of [ARCHITECTURE.md](../../shared/ARCHITECTURE.md). Your job is to find the product's real forces, narrow the catalog, get an explicit choice, and record it.
 
 ## Guardrails
 
@@ -36,5 +36,5 @@ You decide the architecture **with the user**, not for them. No architecture is 
 
 ## Reference
 
-- **Catalogs and the decision procedure:** [ARCHITECTURE.md](/home/riodev/Documents/code/claude/shared/ARCHITECTURE.md)
-- **System design steps and ADR guidance:** [SYSTEM-DESIGN.md](/home/riodev/Documents/code/claude/shared/SYSTEM-DESIGN.md)
+- **Catalogs and the decision procedure:** [ARCHITECTURE.md](../../shared/ARCHITECTURE.md)
+- **System design steps and ADR guidance:** [SYSTEM-DESIGN.md](../../shared/SYSTEM-DESIGN.md)
