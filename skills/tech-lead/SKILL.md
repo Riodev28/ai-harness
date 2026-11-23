@@ -76,13 +76,15 @@ Run this whenever a new product or feature starts, or when a request reaches the
 
 **Architecture conformance**
 - [ ] An ADR records the architecture the user chose for this layer (see [ARCHITECTURE.md](/home/riodev/Documents/code/claude/shared/ARCHITECTURE.md)). If it is missing, the verdict is **CHANGES REQUESTED** until the user has decided and the ADR exists.
-- [ ] The change follows clean architecture's dependency rule (the domain is free of framework and I/O) and the chosen style, its ADRs, and any existing design doc.
+- [ ] The change follows the architecture the ADR chose, including the rules that style makes mandatory (for Clean / Onion or Hexagonal, the dependency rule: the domain is free of framework and I/O), its other ADRs, and any existing design doc.
 - [ ] Any new dependency, pattern or module is justified and fits the established design. A decision that is hard to reverse needs an ADR.
 - [ ] Contracts between components agree. For example, API shapes match between backend and frontend, and schema changes have their migrations.
 
 **Engineering bar.** The code-quality-engineer owns this. You confirm it:
 - [ ] A code-quality report with the verdict APPROVED or APPROVED WITH REFACTOR exists for this exact diff (its latest round).
-- [ ] The build, formatter, linter, type checker and tests are all green, re-run by you after the refactors.
+- [ ] The build, formatter, linter, type checker and tests are all green. If the repository has CI, read its result for this diff instead of re-running them.
+- [ ] Coverage is at least 80% and has not dropped, and the code-quality-engineer's lint set passes with no disabled rules (see [RATCHET.md](/home/riodev/Documents/code/claude/shared/RATCHET.md)).
+- [ ] Only the diff was formatted. A whole-codebase format is only acceptable as one dedicated commit and PR that the owner requested.
 - [ ] The quality refactors left behaviour, contracts and architecture unchanged. Spot-check the refactored files against the analysis.
 - [ ] The diff is scoped to the task.
 
@@ -95,6 +97,7 @@ The detailed standards behind these items live in the shared reference files:
 - [DESIGN-PATTERNS.md](/home/riodev/Documents/code/claude/shared/DESIGN-PATTERNS.md)
 - [SYSTEM-DESIGN.md](/home/riodev/Documents/code/claude/shared/SYSTEM-DESIGN.md)
 - [QUALITY-PLAYBOOK.md](/home/riodev/Documents/code/claude/shared/QUALITY-PLAYBOOK.md), the lessons maintained by the code-quality-engineer
+- [RATCHET.md](/home/riodev/Documents/code/claude/shared/RATCHET.md), the post-push rules: 80% coverage, linter rules, diff-only formatting
 - Frontend only: [DESIGN-SYSTEM.md](/home/riodev/Documents/code/claude/skills/senior-frontend-engineer/DESIGN-SYSTEM.md) and [FRAMEWORKS.md](/home/riodev/Documents/code/claude/skills/senior-frontend-engineer/FRAMEWORKS.md)
 
 ## Change records

@@ -35,8 +35,8 @@ These are hard guardrails.
 
    Done when you know every rule this change is held to.
 2. **Collect the change.** Use `git status`, `git diff --stat` and `git diff`, and include untracked files. Read the author's hand-off and the tech-lead brief it references.
-3. **Establish the baseline.** Run the project's build, formatter, linter, type checker and tests, and record their output. If the baseline is red, return **CHANGES REQUESTED** to the author: you refactor only on green.
-4. **Review every changed file** against the bar. Classify each finding:
+3. **Establish the baseline.** If the repository has CI, read its latest result for the build, formatter, linter, type checker, tests and the 80% coverage threshold from [RATCHET.md](/home/riodev/Documents/code/claude/shared/RATCHET.md) instead of re-running them. Otherwise run them and record their output. If the baseline is red, return **CHANGES REQUESTED** to the author: you refactor only on green.
+4. **Review the change** against the bar. Run your defined lint set rather than reading every diff line, and read by hand only what the rules cannot cover. Check that only the diff was formatted. Classify each finding:
    - **Refactorable:** you can fix it without changing behaviour or contracts. Examples are naming, function size, duplication, nesting, a missing value type, a test written against implementation details, a wrong data structure that a local change can fix, or pipeline duplication.
    - **Author-owned:** fixing it changes behaviour, a contract or the design. Examples are missing tests for behaviour that isn't specified, a wrong layer boundary, a missing error case, or a security hole that needs a design choice.
 5. **Refactor the refactorable findings** in small steps, following [REFACTORING.md](REFACTORING.md). Re-run the checks after each step, and keep them green throughout.
@@ -44,7 +44,7 @@ These are hard guardrails.
    - **APPROVED:** the code met the bar as delivered. This is the outcome to aim for.
    - **APPROVED WITH REFACTOR:** you fixed every finding yourself, with no author-owned findings left, and the checks are green.
    - **CHANGES REQUESTED:** at least one author-owned finding remains. Send the findings back to the author, then review the next round from step 2.
-7. **Teach.** Turn every finding into a playbook lesson, following the rules below. Do it for refactored findings too: those are the most valuable, because the author never saw them fail.
+7. **Teach.** Turn every finding into a playbook lesson, and into a linter rule wherever a tool can check it (the rule goes into CI if the repository has CI), following the rules below. Do it for refactored findings too: those are the most valuable, because the author never saw them fail.
 8. **Hand off.** Send your quality report to the tech lead, or back to the author on CHANGES REQUESTED. Use the format below. Leave everything uncommitted.
 
 ## Quality report
@@ -92,6 +92,7 @@ Rules for editing it:
   - [DESIGN-PATTERNS.md](/home/riodev/Documents/code/claude/shared/DESIGN-PATTERNS.md)
   - [SYSTEM-DESIGN.md](/home/riodev/Documents/code/claude/shared/SYSTEM-DESIGN.md)
   - [ARCHITECTURE.md](/home/riodev/Documents/code/claude/shared/ARCHITECTURE.md)
+  - [RATCHET.md](/home/riodev/Documents/code/claude/shared/RATCHET.md), the post-push rules you enforce and write linter rules for
 - **Frontend standards:**
   - [DESIGN-SYSTEM.md](/home/riodev/Documents/code/claude/skills/senior-frontend-engineer/DESIGN-SYSTEM.md)
   - [FRAMEWORKS.md](/home/riodev/Documents/code/claude/skills/senior-frontend-engineer/FRAMEWORKS.md)

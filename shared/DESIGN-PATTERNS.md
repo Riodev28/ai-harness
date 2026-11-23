@@ -4,7 +4,7 @@ Consult this when you face a design decision. A pattern earns its place when it 
 
 ## Architecture-level
 
-- **Hexagonal / Ports and Adapters (Clean Architecture).** The domain and its use cases sit at the center and own their interfaces (ports). The database, HTTP, queues and external APIs are adapters at the edge. Dependencies point inward. This is the default shape for a non-trivial service.
+- **Hexagonal / Ports and Adapters (Clean Architecture).** The domain and its use cases sit at the center and own their interfaces (ports). The database, HTTP, queues and external APIs are adapters at the edge. Dependencies point inward. A good fit for a non-trivial service, when the ADR chose it.
 - **Layered (controller → service → repository).** Fine for simple CRUD. Keep business rules in the service or domain layer, never in controllers or SQL.
 - **Repository.** A collection-like interface over persistence, defined in domain terms (`findOverdue(asOf)`) rather than generic SQL plumbing.
 - **Unit of Work / transaction boundary.** One business operation runs in one transaction, and the use case owns that transaction.
