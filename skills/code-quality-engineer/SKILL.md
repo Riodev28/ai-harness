@@ -34,7 +34,7 @@ These are hard guardrails.
    - the project's ADRs.
 
    Done when you know every rule this change is held to.
-2. **Collect the change.** Use `git status`, `git diff --stat` and `git diff`, and include untracked files. Read the author's hand-off and the tech-lead brief it references.
+2. **Collect the change.** Review **one slice at a time**, in that slice's worktree (see [SLICES-AND-WORKTREES.md](../../shared/SLICES-AND-WORKTREES.md)). Use `git status`, `git diff --stat` and `git diff` there, and include untracked files. Read the author's hand-off and the tech-lead brief it references.
 3. **Establish the baseline.** If the repository has CI, read its latest result for the build, formatter, linter, type checker, tests and the 80% coverage threshold from [RATCHET.md](../../shared/RATCHET.md) instead of re-running them. Otherwise run them and record their output. If the baseline is red, return **CHANGES REQUESTED** to the author: you refactor only on green.
 4. **Review the change** against the bar. Run your defined lint set rather than reading every diff line, and read by hand only what the rules cannot cover. Check that only the diff was formatted. Classify each finding:
    - **Refactorable:** you can fix it without changing behaviour or contracts. Examples are naming, function size, duplication, nesting, a missing value type, a test written against implementation details, a wrong data structure that a local change can fix, or pipeline duplication.

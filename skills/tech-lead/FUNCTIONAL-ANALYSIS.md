@@ -64,12 +64,14 @@ As a <actor>, I want <capability> so that <benefit>.
 | NFR-1 | Performance | p95 < 300 ms for … |
 <Also cover security, privacy, availability, scalability, observability and compatibility.>
 
-## 12. Task breakdown
-| Task | Owner skill | Depends on | Covers |
-|---|---|---|---|
-| T-1 Define API contract + DB schema | senior-backend-engineer | — | FR-1, US-1 |
-| T-2 Screens for US-1 | senior-frontend-engineer | T-1 contract | US-1 |
-| T-3 Dockerize + CI pipeline | senior-devops-engineer | — | NFR-4 |
+## 12. Slices and task breakdown
+<Cut the work into vertical slices of observable behaviour (see shared/SLICES-AND-WORKTREES.md). Each slice has one branch and one worktree, and one or more tasks.>
+
+| Slice | Task | Owner skill | Depends on | Covers |
+|---|---|---|---|---|
+| S-0 Shared contract | T-1 Define API contract + DB schema | senior-backend-engineer | — | FR-1, US-1 |
+| S-1 Log a meal from text | T-2 Screens for US-1 | senior-frontend-engineer | S-0 contract | US-1 |
+| S-2 Delivery | T-3 Dockerize + CI pipeline | senior-devops-engineer | — | NFR-4 |
 
 ## 13. Risks, assumptions, open questions
 <Each open question has an owner (usually the user) and blocks a listed task until it is answered.>
@@ -83,6 +85,7 @@ Send one brief for each task, or for each group of tasks owned by one engineer. 
 # Brief T-N – <title>  (analysis: docs/analysis/NNNN-<slug>.md)
 
 - **Owner skill:** senior-backend-engineer | senior-frontend-engineer | senior-devops-engineer | <other>
+- **Slice, branch and worktree:** S-N, `slice/NNNN-<slug>`, `../<repo>-worktrees/NNNN-<slug>` (work only here)
 - **Goal:** <one sentence in product terms>
 - **Covers:** US-…, FR-…, NFR-…  (read these sections of the analysis)
 - **Architecture:** <ADR links>, plus where this code lives in the project

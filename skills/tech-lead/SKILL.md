@@ -30,9 +30,9 @@ Run this whenever a new product or feature starts, or when a request reaches the
 
 1. **Understand the product.** Read everything that already exists: the user's request, design docs, ADRs, earlier analyses in `docs/analysis/`, and the current code and its behaviour. Then question the user about every gap: goals, users, flows, business rules, edge cases, priorities and scope. Look facts up yourself. Ask the user only about product decisions, and keep going until no requirement rests on an assumption. Done when you can explain every flow end to end, with its rules and edge cases, without guessing.
 2. **Make sure the architecture is decided.** For every layer the product has, an ADR must record the architecture the user chose (see [ARCHITECTURE.md](../../shared/ARCHITECTURE.md)). If an ADR is missing, ask the user and record their answer. The engineers' briefs depend on these decisions.
-3. **Write the analysis.** Write it at `docs/analysis/NNNN-<slug>.md`, following [FUNCTIONAL-ANALYSIS.md](FUNCTIONAL-ANALYSIS.md). It needs testable acceptance criteria for every user story, and the contracts that sit between engineers (API shapes, events, schemas).
+3. **Write the analysis.** Cut the work into **vertical slices** of observable behaviour, with shared contracts as the first slice, following [SLICES-AND-WORKTREES.md](../../shared/SLICES-AND-WORKTREES.md). Write it at `docs/analysis/NNNN-<slug>.md`, following [FUNCTIONAL-ANALYSIS.md](FUNCTIONAL-ANALYSIS.md). It needs testable acceptance criteria for every user story, and the contracts that sit between engineers (API shapes, events, schemas).
 4. **Get the user's approval.** Present a summary of the analysis and its open questions. Revise until the user approves it, then mark it **APPROVED**. No brief goes out before that.
-5. **Send the briefs.** Each engineer gets a brief built from the analysis, following the template in [FUNCTIONAL-ANALYSIS.md](FUNCTIONAL-ANALYSIS.md). Dispatch the briefs in dependency order, with shared contracts first. Use the agent with the matching skill: `senior-backend-engineer`, `senior-frontend-engineer`, `senior-devops-engineer` or another. Work that doesn't depend on other work can go out in parallel. Done when every task in the analysis's breakdown is assigned. Each returning change then enters the review loop below.
+5. **Send the briefs.** Each slice gets a brief that names its branch and worktree. Propose the exact `git worktree add` command for each slice, and let the user run it or approve it (you never create worktrees on your own). Each engineer gets a brief built from the analysis, following the template in [FUNCTIONAL-ANALYSIS.md](FUNCTIONAL-ANALYSIS.md). Dispatch the briefs in dependency order, with shared contracts first. Use the agent with the matching skill: `senior-backend-engineer`, `senior-frontend-engineer`, `senior-devops-engineer` or another. Work that doesn't depend on other work can go out in parallel. Done when every task in the analysis's breakdown is assigned. Each returning change then enters the review loop below.
 
 ## Review loop
 
@@ -86,7 +86,7 @@ Run this whenever a new product or feature starts, or when a request reaches the
 - [ ] Coverage is at least 80% and has not dropped, and the code-quality-engineer's lint set passes with no disabled rules (see [RATCHET.md](../../shared/RATCHET.md)).
 - [ ] Only the diff was formatted. A whole-codebase format is only acceptable as one dedicated commit and PR that the owner requested.
 - [ ] The quality refactors left behaviour, contracts and architecture unchanged. Spot-check the refactored files against the analysis.
-- [ ] The diff is scoped to the task.
+- [ ] The diff is scoped to the task and to one slice, reviewed in that slice's worktree. It touches no other slice's files, and the shared contracts match the first slice (see [SLICES-AND-WORKTREES.md](../../shared/SLICES-AND-WORKTREES.md)).
 
 If you find a code-quality problem the report missed, send the change back to the code-quality-engineer, and don't fix it yourself. That way the playbook learns from it.
 

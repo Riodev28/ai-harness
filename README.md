@@ -9,22 +9,25 @@ flowchart TD
     U([You: request a product or feature]) --> TL1
 
     subgraph before [Before any code]
-        TL1[tech-lead<br/>functional analysis + briefs<br/>docs/analysis/]
+        TL1[tech-lead<br/>functional analysis<br/>docs/analysis/]
         GM{ADR records the<br/>architecture?}
         GR[grill-me<br/>interviews you, picks a style<br/>docs/adr/NNNN-architecture.md]
+        SL[tech-lead cuts vertical slices<br/>shared contract first<br/>one brief per slice]
+        WT[You create one git worktree<br/>and branch per slice<br/>git worktree add ...]
         TL1 --> GM
         GM -- no --> GR --> GM
+        GM -- yes --> SL --> WT
     end
 
-    GM -- yes --> ENG
+    WT --> ENG
 
-    subgraph build [Build]
-        ENG[senior-backend / frontend / devops engineer<br/>small steps, test-first<br/>reads QUALITY-PLAYBOOK + RATCHET]
+    subgraph build [Build: one slice per worktree, in parallel when independent]
+        ENG[senior-backend / frontend / devops engineer<br/>works only in its slice worktree<br/>small steps, test-first<br/>reads QUALITY-PLAYBOOK + RATCHET]
     end
 
     ENG --> CI
 
-    subgraph ratchet [Ratchet: in CI when the repo has CI]
+    subgraph ratchet [Ratchet: in CI on the slice branch when the repo has CI]
         CI[CI checks<br/>coverage ≥ 80%<br/>lint set<br/>diff-only format]
     end
 
@@ -32,7 +35,7 @@ flowchart TD
     CI -- green --> CQ
 
     subgraph gate [Quality gate]
-        CQ[code-quality-engineer<br/>reads CI result, runs lint set<br/>refactors without changing behaviour]
+        CQ[code-quality-engineer<br/>reviews one slice at a time<br/>reads CI result, runs lint set<br/>refactors without changing behaviour]
         PB[(QUALITY-PLAYBOOK<br/>+ new lint rules)]
         CQ -- every finding becomes a lesson --> PB
     end
@@ -41,11 +44,11 @@ flowchart TD
     CQ -- APPROVED --> TL2
 
     subgraph signoff [Sign-off]
-        TL2[tech-lead<br/>checks analysis, ADR and CI<br/>writes docs/changes/NNNN-slug.md]
+        TL2[tech-lead<br/>checks slice against analysis, ADR and CI<br/>writes docs/changes/NNNN-slug.md per slice]
     end
 
     TL2 -- CHANGES REQUESTED --> ENG
-    TL2 -- APPROVED --> U2([You: review, commit and push])
+    TL2 -- APPROVED --> U2([You: review, commit, merge slices<br/>in dependency order, remove worktree])
 
     PB -. read before implementing .-> ENG
 ```
@@ -54,8 +57,8 @@ Every change goes engineer → code-quality-engineer → tech-lead → you. You 
 
 ## What's inside
 
-- `skills/` holds the roles: `tech-lead`, `senior-backend-engineer`, `senior-frontend-engineer`, `senior-devops-engineer`, `code-quality-engineer` and `grill-me` (picks the architecture with you).
-- `shared/` holds the standards every role reads: architecture, principles, design patterns, data structures, system design, the quality playbook and the post-push ratchet rules.
+- `skills/` holds the roles: `tech-lead`, `senior-backend-engineer`, `senior-frontend-engineer`, `senior-devops-engineer`, `code-quality-engineer`, `grill-me` (picks the architecture with you) and `response-mode` (Concise by default, Explanatory when you ask for detail).
+- `shared/` holds the standards every role reads: architecture, principles, design patterns, data structures, system design, the quality playbook, the post-push ratchet rules, and how work is cut into slices and worktrees.
 
 Links between files are relative, so the repository works wherever you clone it.
 
@@ -81,7 +84,7 @@ You need [Claude Code](https://claude.com/claude-code) and git.
 
    To use the skills in one project only, link both into that project's `.claude/` instead.
 
-3. Restart Claude Code, then check that the six skills appear.
+3. Restart Claude Code, then check that the seven skills appear.
 
 ## Use
 
